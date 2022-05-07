@@ -1,0 +1,44 @@
+<!-- ADDING BOOTSTRAP-->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+  crossorigin="anonymous"
+/>
+
+<div class="container-fluid">
+  <form>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        required
+        ngModel
+        name="firstName"
+        #firstName="ngModel"
+        (change)="log(firstName)"
+        type="text"
+        class="form-control"
+        id="firstName"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="firstName.touched && !firstName.valid"
+      >
+        First Name is Required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="" id="comment">Comment</label>
+      <textarea
+        name=""
+        id="comment"
+        cols="30"
+        rows="10"
+        class="form-control"
+      ></textarea>
+    </div>
+    <br />
+    <button class="btn btn-primary">Click Me</button>
+  </form>
+</div>
