@@ -7,11 +7,13 @@
 />
 
 <div class="container-fluid">
-  <form>
+  <form #userForm="ngForm">
+    {{userForm.value | json }}
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input
         required
+        minlength="3"
         ngModel
         name="firstName"
         #firstName="ngModel"
@@ -24,21 +26,76 @@
         class="alert alert-danger"
         *ngIf="firstName.touched && !firstName.valid"
       >
-        First Name is Required
+        <div *ngIf="firstName.errors.required">First Name is Required</div>
+        <div *ngIf="firstName.touched && firstName.errors.minlength">
+          Name should atleast contains 3 character
+        </div>
       </div>
     </div>
 
+
+
+
+
+
+
+
     <div class="form-group">
-      <label for="" id="comment">Comment</label>
+    <label for="lastName">First Name</label>
+    <input
+      required
+      minlength="3"
+      ngModel
+      name="lastName"
+      #lastName="ngModel"
+      (change)="log(lastName)"
+      type="text"
+      class="form-control"
+      id="lastName"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="lastName.touched && !lastName.valid"
+    >
+      <div *ngIf="lastName.errors.required">Last Name is Required</div>
+      <div *ngIf="lastName.touched && lastName.errors.minlength">
+        Name should atleast contains 3 character
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+    <div class="form-group">
+      <label for="comment" id="comment">Comment</label>
       <textarea
-        name=""
+        required
+        ngModel
+        minlength="10"
+       
+        #comment="ngModel"
+        (change)="log(comment)"
         id="comment"
         cols="30"
         rows="10"
         class="form-control"
-      ></textarea>
+      >
+      </textarea>
+      <div class="alert alert-danger" *ngIf="!comment.valid">
+      Write atleast 10 words
+      </div>
     </div>
     <br />
     <button class="btn btn-primary">Click Me</button>
   </form>
 </div>
+
+
+<u><h1>DATA</h1></u>
+
